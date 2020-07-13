@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+
+.alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .ui-progress-spinner {
+    width: 250px;
+    height: 250px;
+  }
+}
+nav {
+  .ui-dropdown {
+    min-width: auto;
+    border-color: #007bff;
+    color: #007bff;
+  }
+  .ui-dropdown-label-container {
+    height: 34px;
+  }
+  .ui-dropdown label.ui-dropdown-label,
+  .ui-dropdown .ui-dropdown-trigger .ui-dropdown-trigger-icon {
+    color: #007bff;
+  }
+}
+.ui-autocomplete {
+  height: 50px;
+  width: 100%;
+  .ui-inputtext {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border-radius: 0.25rem;
+  }
+  .ui-autocomplete-dropdown {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: auto;
+  }
+}
+.ui-calendar {
+  height: 50px;
+  width: 100%;
+  input {
+    height: 100%;
+    width: 100%;
+    border-radius: 0.25rem;
+  }
+  button {
+    position: absolute;
+    right: 0;
+  }
+}

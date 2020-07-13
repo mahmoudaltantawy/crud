@@ -1,0 +1,156 @@
+$orange: #fdc32c;
+$blue: #1874b9;
+$green: #8dc043;
+$gray_one: #707070;
+$gray_two: #e6e6e6;
+$gray_three: #a2a2a2;
+
+.container {
+  max-width: 90%;
+  @media only screen and (max-width: 1400px) {
+    max-width: 100%;
+  }
+}
+.search_form {
+  min-height: 370px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  @media only screen and (max-width: 1200px) {
+    .form-control {
+      font-size: 0.8rem;
+    }
+  }
+  @media only screen and (max-width: 991px) {
+    .form-control {
+      font-size: 1.2rem;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .form-control {
+      font-size: 1rem;
+    }
+  }
+  @media only screen and (max-width: 575px) {
+    .form-control {
+      font-size: 1.4rem;
+    }
+  }
+
+  .flight_type {
+    text-align: center;
+    color: #fff;
+    // width: 35%;
+    margin: auto;
+    display: flex;
+    margin-top: 40px;
+    .mat-radio-button {
+      margin-left: 30px !important;
+    }
+    @media only screen and (max-width: 1200px) {
+      width: 40%;
+    }
+    @media only screen and (max-width: 991px) {
+      width: 60%;
+    }
+    @media only screen and (max-width: 768px) {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+}
+.search_home {
+  position: relative;
+  margin-top: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(../../../../assets/images/flight-section.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  h1 {
+    color: #fff;
+    padding-top: 100px;
+    font-size: 3rem;
+    margin-bottom: 30px;
+    @media only screen and (max-width: 991px) {
+      margin-bottom: 20px;
+    }
+    font-family: "cool";
+    p:last-child {
+      margin-top: 25px;
+    }
+  }
+  .press_category {
+    ul {
+      width: 40%;
+      margin: auto;
+      display: flex;
+      @media only screen and (max-width: 576px) {
+        width: 80% !important;
+      }
+      @media only screen and (max-width: 480px) {
+        width: 100% !important;
+      }
+      li {
+        flex: 1;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        height: 155px;
+        border-radius: 50%;
+        text-align: center;
+        margin-right: 25px;
+
+        p {
+          color: $blue;
+          font-size: 1.2rem;
+          font-family: "Acme";
+
+          span {
+            width: 60px;
+            height: 60px;
+            display: block;
+            margin: auto;
+            border-radius: 50%;
+            margin-top: 25px;
+            background-size: cover;
+            background-position: center center;
+
+            img {
+              width: 60%;
+              height: 80%;
+            }
+          }
+        }
+      }
+      li:first-child {
+        span {
+          img {
+            width: 80% !important;
+            height: 100% !important;
+          }
+        }
+      }
+      li:nth-child(2) {
+        span {
+          img {
+            width: 70% !important;
+            height: 90% !important;
+          }
+        }
+      }
+
+      @media only screen and (max-width: 1200px) {
+        width: 60%;
+      }
+      @media only screen and (max-width: 991px) {
+      }
+      @media only screen and (max-width: 768px) {
+      }
+      @media only screen and (max-width: 480px) {
+      }
+      @media only screen and (max-width: 360px) {
+      }
+    }
+  }
+}

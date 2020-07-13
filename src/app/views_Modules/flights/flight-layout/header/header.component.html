@@ -1,0 +1,60 @@
+<header id="header">
+  <div class="content">
+    <nav class="navbar navbar-expand-lg">
+      <a class="navbar-brand" routerLink="/">
+        <img src="../../assets/images/logo travware-01.png" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+        (click)="showMenu()"
+      >
+        <span class="navbar-toggler-icon">
+          <i class="fa fa-2x fa-bars" aria-hidden="true"></i>
+        </span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Flight</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/hotel-home">Hotel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/">Car</a>
+          </li>
+        </ul>
+        <div class="form-inline my-2 my-lg-0 signin-up">
+          <div class="lang_curr">العربيه | EGP</div>
+          <a class="my_booking bold" (click)="openModal(template)"
+            >My Booking</a
+          >
+          <button
+            class="btn btn-outline-success my-2 my-sm-0"
+            (click)="openModal(login)"
+          >
+            Sign In
+          </button>
+          <button
+            class="btn btn-outline-success my-2 my-sm-0"
+            (click)="openModal(login)"
+          >
+            Sign Up
+          </button>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,127 @@
+$orange: #fdc32c;
+$blue: #1874b9;
+$green: #8dc043;
+$gray_one: #707070;
+$gray_two: #e6e6e6;
+$gray_three: #a2a2a2;
+footer {
+  padding-top: 5vh;
+  background: $blue;
+  padding-top: 45px;
+
+  .touch {
+    background: #8dc043;
+    color: #fff;
+    margin-top: -70px;
+    height: 50px;
+    width: 150px;
+    text-align: center;
+    padding-top: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+  }
+  .touch::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 25px solid #759f38;
+    border-left: 30px solid transparent;
+    left: -30px;
+    top: 0px;
+  }
+  .footer_info {
+    color: #fff;
+
+    li {
+      display: flex;
+      span {
+        width: 10%;
+
+        i {
+          font-size: 1.2em;
+        }
+      }
+      p {
+        width: 85%;
+      }
+    }
+  }
+  .social {
+    margin-top: 10%;
+    @media only screen and (max-width: 768px) {
+      margin-top: 1%;
+    }
+    img {
+      margin: auto;
+      display: block;
+      @media only screen and (max-width: 768px) {
+        margin: 0;
+      }
+    }
+    .links {
+      p {
+        width: 70%;
+        margin: auto;
+        text-align: center;
+        @media only screen and (max-width: 768px) {
+          width: 100%;
+          text-align: left;
+        }
+
+        span {
+          height: 30px;
+          width: 30px;
+          background: #8dc043;
+          color: #fff;
+          margin: 10px 3px;
+          display: inline-block;
+          border-radius: 50%;
+          text-align: center;
+          padding: 4px;
+        }
+      }
+    }
+  }
+  .subscribe {
+    h5 {
+      color: #fff;
+    }
+    input {
+      width: 70%;
+      background: none;
+      border-color: #fff;
+      @media only screen and (max-width: 778px) {
+        width: 40%;
+      }
+      @media only screen and (max-width: 576px) {
+        width: 60%;
+      }
+      @media only screen and (max-width: 480px) {
+        width: 85%;
+      }
+      @media only screen and (max-width: 360px) {
+        width: 100%;
+      }
+    }
+    button {
+      width: 30%;
+      background: #fff;
+      color: $green;
+      margin-top: 10px;
+      @media only screen and (max-width: 480px) {
+        width: 60%;
+      }
+      @media only screen and (max-width: 360px) {
+        width: 100%;
+      }
+    }
+  }
+  .Copyright {
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 0;
+  }
+}

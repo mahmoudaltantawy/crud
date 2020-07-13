@@ -1,0 +1,7 @@
+<div class="centered">
+  <router-outlet></router-outlet>
+  <p-toast position="top-center"></p-toast>
+</div>
+<div class="alert" *ngIf="load.isLoading | async">
+  <p-progressSpinner></p-progressSpinner>
+</div>

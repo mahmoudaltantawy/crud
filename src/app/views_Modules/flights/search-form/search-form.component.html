@@ -1,0 +1,393 @@
+<div class="flight_type">
+  <button
+    class="btn"
+    value="oneway"
+    (click)="getFlightType($event)"
+    [ngClass]="flightType == 'oneway' ? 'btn-primary' : 'btn'"
+  >
+    one Way
+  </button>
+
+  <button
+    class="btn"
+    value="round"
+    (click)="getFlightType($event)"
+    [ngClass]="flightType == 'round' ? 'btn-primary' : 'btn'"
+  >
+    round Trip
+  </button>
+
+  <button
+    class="btn"
+    value="multi"
+    (click)="getFlightType($event)"
+    [ngClass]="flightType == 'multi' ? 'btn-primary' : 'btn'"
+  >
+    Multi-Cities
+  </button>
+</div>
+
+<form [formGroup]="myForm">
+  <div class="flight_form">
+    <div class="flight_fields">
+      <div class="row" formArrayName="flights">
+        <div class="col-lg-8 col-md-12">
+          <div
+            class="form-group row"
+            *ngFor="let flight of myForm.get('flights').controls; let i = index"
+            [formGroupName]="i"
+          >
+            <div class="col-lg-4 col-md-3 col-sm-6 col-12 origin">
+              <span class="font">
+                <i class="pi pi-map-marker" style="font-size: 2em;"></i>
+              </span>
+
+              <p-autoComplete
+                formControlName="city"
+                [suggestions]="filteredBrands"
+                (completeMethod)="filterBrands($event)"
+                [size]="30"
+                [minLength]="30"
+                placeholder="Origin"
+                [dropdown]="true"
+              >
+                <ng-template let-brand pTemplate="item">
+                  <div
+                    class="ui-helper-clearfix"
+                    style="border-bottom: 1px solid #d5d5d5;"
+                  >
+                    <!-- <img src="assets/showcase/images/demo/car/{{brand}}.png" style="width:32px;display:inline-block;margin:5px 0 2px 5px"/> -->
+                    <div
+                      style="
+                        font-size: 18px;
+                        float: right;
+                        margin: 10px 10px 0 0;
+                      "
+                    >
+                      {{ brand }}
+                    </div>
+                  </div>
+                </ng-template>
+              </p-autoComplete>
+
+              <span class="swap">
+                <i class="pi pi-sort-alt" style="font-size: 2em;"></i>
+              </span>
+            </div>
+            <div class="col-lg-4 col-md-3 col-sm-6 col-12">
+              <span class="font">
+                <i class="pi pi-map-marker" style="font-size: 2em;"></i>
+              </span>
+              <p-autoComplete
+                formControlName="to"
+                [suggestions]="filteredBrands"
+                (completeMethod)="filterBrands($event)"
+                [size]="30"
+                [minLength]="1"
+                placeholder="Destination"
+                [dropdown]="true"
+              >
+                <ng-template let-brand pTemplate="item">
+                  <div
+                    class="ui-helper-clearfix"
+                    style="border-bottom: 1px solid #d5d5d5;"
+                  >
+                    <!-- <img src="assets/showcase/images/demo/car/{{brand}}.png" style="width:32px;display:inline-block;margin:5px 0 2px 5px"/> -->
+                    <div
+                      style="
+                        font-size: 18px;
+                        float: right;
+                        margin: 10px 10px 0 0;
+                      "
+                    >
+                      {{ brand }}
+                    </div>
+                  </div>
+                </ng-template>
+              </p-autoComplete>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12 col-12 _calendar">
+              <div class="calendar">
+                <div class="datepicker">
+                  <p-calendar
+                    formControlName="date"
+                    [minDate]="minDateFrom"
+                    [maxDate]="maxDateFrom"
+                    [yearNavigator]="true"
+                    yearRange="2000:2030"
+                    [readonlyInput]="true"
+                    [showIcon]="true"
+                  ></p-calendar>
+                </div>
+                <div class="datepicker" *ngIf="flightType == 'round'">
+                  <p-calendar
+                    formControlName="range"
+                    [minDate]="minDateTo"
+                    [maxDate]="maxDateTO"
+                    [yearNavigator]="true"
+                    yearRange="2000:2030"
+                    [readonlyInput]="true"
+                    [showIcon]="true"
+                  ></p-calendar>
+                </div>
+                <span
+                  *ngIf="flightType == 'multi' && i > 0"
+                  class="remove_flight"
+                  (click)="removeFlight(i)"
+                >
+                  <i class="pi pi-times-circle" style="font-size: 2em;"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-12">
+          <div class="form-group row">
+            <div class="col-lg-8 col-sm-6 col-12">
+              <div class="btn-group" style="width: 100%;">
+                <span class="font" style="left: 10px;">
+                  <i
+                    class="pi pi-sort-down"
+                    style="font-size: 2em;"
+                    (click)="openToggled($event)"
+                  ></i>
+                </span>
+                <input
+                  id="button-basic"
+                  type="button"
+                  class="form-control travellers dropdown-toggle"
+                  aria-controls="dropdown-basic"
+                  type="text"
+                  placeholder="Travellers & Class"
+                  appClickstoppropagation
+                />
+
+                <span class="caret"></span>
+
+                <div class="dropdown-menu" *ngIf="toggled">
+                  <ul class="list-unstyled list-group">
+                    <li>
+                      <div class="form-group">
+                        <label>Preferred Airlines</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Preferred Airlines"
+                        />
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <label>Select Refundable</label>
+                        <select
+                          class="form-control"
+                          placeholder="Preferred Airlines"
+                        >
+                          <option>All Rights</option>
+                          <option>Only Refundable</option>
+                          <option>Only Non Refundable</option>
+                        </select>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <label>Class</label>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="exampleRadios"
+                            id="exampleRadios1"
+                            value="option1"
+                            checked
+                          />
+                          <label class="form-check-label" for="exampleRadios1">
+                            Economy
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="exampleRadios"
+                            id="exampleRadios2"
+                            value="option2"
+                          />
+                          <label class="form-check-label" for="exampleRadios2">
+                            First
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="exampleRadios"
+                            id="exampleRadios3"
+                            value="option3"
+                          />
+                          <label class="form-check-label" for="exampleRadios3">
+                            Business
+                          </label>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="travellers_info">
+                      <h4>Travellers</h4>
+                      <div class="age">
+                        <p>
+                          <!-- <img src="../../assets/img/man-user.svg" />Adult -->
+                          <span>(12+Yrs)</span>
+                        </p>
+                        <div class="calc">
+                          <button class="decrease">-</button>
+                          <input class="adult_val" />
+                          <button class="increase">+</button>
+                        </div>
+                      </div>
+                      <div class="age">
+                        <p>
+                          <!-- <img
+                              src="../../assets/img/kids-couple.svg"
+                            /> -->
+                          Children <span>(12+Yrs)</span>
+                        </p>
+                        <div class="calc">
+                          <button class="decrease">-</button>
+                          <input class="adult_val" />
+                          <button class="increase">+</button>
+                        </div>
+                      </div>
+                      <div class="age">
+                        <p>
+                          <!-- <img
+                              src="../../assets/img/baby-boy.svg"
+                            />Infant <span>(Under 2Yrs)</span> -->
+                        </p>
+                        <div class="calc">
+                          <button class="decrease">-</button>
+                          <input class="adult_val" />
+                          <button class="increase">+</button>
+                        </div>
+                      </div>
+                      <div class="children">
+                        <div class="form-inline">
+                          <label>Child:1</label>
+                          <select class="form-control">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                          </select>
+                        </div>
+                        <div class="form-inline">
+                          <label>Child:1</label>
+                          <select class="form-control">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                          </select>
+                        </div>
+                        <div class="form-inline">
+                          <label>Child:1</label>
+                          <select class="form-control">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                          </select>
+                        </div>
+                        <div class="form-inline">
+                          <label>Child:1</label>
+                          <select class="form-control">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                          </select>
+                        </div>
+                        <div class="form-inline">
+                          <label>Child:1</label>
+                          <select class="form-control">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                          </select>
+                        </div>
+                        <div class="form-inline">
+                          <label>Child:1</label>
+                          <select class="form-control">
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <label>Customer Number</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="Preferred Airlines"
+                        />
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-group">
+                        <label>Select Fare Type</label>
+                        <select
+                          class="form-control"
+                          placeholder="Preferred Airlines"
+                        >
+                          <option>Published Fare</option>
+                          <option>Only Refundable</option>
+                          <option>Only Non Refundable</option>
+                        </select>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-sm-6 col-12">
+              <button class="btn btn-success" (click)="sendSearch()">
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <span *ngIf="flightType == 'multi'" class="btn" (click)="addFlight()"
+        >Add Flights</span
+      >
+
+      <div>
+        <!-- <mat-checkbox>None Stop Flight!</mat-checkbox>
+          <mat-checkbox>Flexiable Dates +/- 3 Days</mat-checkbox> -->
+      </div>
+    </div>
+  </div>
+</form>

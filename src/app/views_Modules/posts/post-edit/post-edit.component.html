@@ -1,0 +1,49 @@
+<form [formGroup]="updateForm" (submit)="onSubmit()">
+  <div class="form-group">
+    <label>Post Title:</label>
+    <input
+      formControlName="title"
+      type="text"
+      class="form-control"
+      placeholder="title"
+      [(ngModel)]="postDetails.title"
+    />
+
+    <div
+      *ngIf="
+        form_controls.title.invalid &&
+        (form_controls.title.dirty || form_controls.title.touched)
+      "
+      class="alert alert-danger"
+    >
+      <div *ngIf="form_controls.title.errors.required">
+        Name is required.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Post title:</label>
+    <textarea
+      formControlName="description"
+      [(ngModel)]="postDetails.description"
+      class="form-control"
+      rows="5"
+    ></textarea>
+
+    <div
+      *ngIf="
+        form_controls.description.invalid &&
+        (form_controls.description.dirty || form_controls.description.touched)
+      "
+      class="alert alert-danger"
+    >
+      <div *ngIf="form_controls.description.errors.required">
+        Name is required.
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">
+    <i class="pi pi-plus"></i>Update
+  </button>
+</form>
