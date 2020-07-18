@@ -6,6 +6,7 @@ import { DropdownModule } from "primeng/dropdown";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgOptionHighlightModule } from "@ng-select/ng-option-highlight";
 import { ClickstoppropagationDirective } from './_directives/clickstoppropagation.directive';
+import {FileUploadModule} from 'primeng/fileupload';
 
 @NgModule({
   declarations: [ClickstoppropagationDirective],
@@ -17,6 +18,7 @@ import { ClickstoppropagationDirective } from './_directives/clickstoppropagatio
     FormsModule,
     ReactiveFormsModule,
     NgOptionHighlightModule,
+    FileUploadModule
   ],
   exports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { ClickstoppropagationDirective } from './_directives/clickstoppropagatio
     FormsModule,
     ReactiveFormsModule,
     NgOptionHighlightModule,
+    FileUploadModule
   ],
   providers: [],
 })

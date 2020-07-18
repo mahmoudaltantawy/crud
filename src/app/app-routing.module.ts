@@ -26,7 +26,7 @@ const routes: Routes = [
     component: AdminComponent,
     children: [
       {
-        path: "posts",
+        path: "",
         loadChildren: () =>
           import("./views_Modules/posts/posts.module").then(
             (m) => m.PostsModule
@@ -35,6 +35,7 @@ const routes: Routes = [
           myresolve: PostsResolverService,
         },
       },
+     
     ],
   },
   {

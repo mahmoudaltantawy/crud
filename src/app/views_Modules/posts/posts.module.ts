@@ -6,15 +6,18 @@ import { PostShowComponent } from "./post-show/post-show.component";
 import { PostAddComponent } from "./post-add/post-add.component";
 import { PostEditComponent } from "./post-edit/post-edit.component";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
-import { ConfirmationService } from "primeng/api";
+import { ConfirmationService} from "primeng/api";
 import { ToastModule } from "primeng/toast";
 import { ReactiveFormsModule } from "@angular/forms";
+import { ProfileComponent } from "./profile/profile.component";
+import { SharedModule } from "../../shared/shared.module";
 @NgModule({
   declarations: [
     PostslistComponent,
     PostShowComponent,
     PostAddComponent,
     PostEditComponent,
+    ProfileComponent
   ],
 
   providers: [ConfirmationService],
@@ -24,6 +27,7 @@ import { ReactiveFormsModule } from "@angular/forms";
     ConfirmDialogModule,
     ToastModule,
     ReactiveFormsModule,
+    SharedModule
   ],
 })
 export class PostsModule {}
