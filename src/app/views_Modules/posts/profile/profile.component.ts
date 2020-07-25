@@ -8,13 +8,13 @@ import { NotificationService } from '../../../shared/services/notification.servi
 })
 export class ProfileComponent implements OnInit {
   selectedState: any = null;
-
-  states: any[] = [
-      {name: 'Arizona', code: 'Arizona'},
-      {name: 'California', value: 'California'},
-      {name: 'Florida', code: 'Florida'},
-      {name: 'Ohio', code: 'Ohio'},
-      {name: 'Washington', code: 'Washington'}
+  model: any = {};
+  person;
+  gender: any[] = [
+      
+      {name: 'male', value: 'male'},
+      {name: 'female', value: 'female'},
+      
   ];
 
   cities1: any[] = [];
@@ -34,6 +34,9 @@ export class ProfileComponent implements OnInit {
       }
 
       this.notifi.successNotification('file uploaded successfully');
+  }
+  onSubmit() {
+    console.log(this.model)
   }
 
   ngOnInit() {

@@ -15,15 +15,20 @@ export class LoginComponent implements OnInit {
   ) {}
   ngOnInit() {}
   err: string;
+  loader:boolean;
   model: any = {
     email: "admin@abharworks.com",
     password: "123456",
   };
 
   onSubmit() {
+    this.loader = true;
     this.auth.login(this.model).subscribe(
       (res) => {
         if (res && res["access_token"]) {
+          setInterval(()=>{
+            this.loader = false
+          },5000)
           const jwt = res["access_token"];
           localStorage.setItem("token", jwt);
           this.router.navigate(["admin/posts"]);
